@@ -200,6 +200,25 @@ namespace Poker
             return czyStrit;
         }
 
+        public bool Trojka(List<string> list)
+        {
+            bool trojka = false;
+            for (int i = 0; i < list.Count - 2; i++)
+            {
+                string wartoscKarty1 = list[i].Substring(0, list[i].Length - 1);
+                string wartoscKarty2 = list[i + 1].Substring(0, list[i + 1].Length - 1);
+                string wartoscKarty3 = list[i + 2].Substring(0, list[i + 2].Length - 1);
+
+                if (wartoscKarty1 == wartoscKarty2 && wartoscKarty2 == wartoscKarty3)
+                {
+                    trojka = true;
+                    break;
+                }
+            }
+
+            return trojka;
+        }
+
         public static bool Kareta(List<string> list)
         {
             bool czyKareta = false;
