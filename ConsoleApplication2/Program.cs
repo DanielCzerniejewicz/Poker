@@ -89,9 +89,9 @@ namespace Poker
             {
                 Wynikowa.Add(a[i]);
             }
-            for (int i = 0; i < a.Count; i++)
+            for (int i = 0; i < b.Count; i++)
             {
-                Wynikowa.Add(a[i]);
+                Wynikowa.Add(b[i]);
             }
 
             return Wynikowa;
