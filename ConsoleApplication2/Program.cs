@@ -281,12 +281,50 @@ namespace Poker
 
             return czyFull;
         }
+        public static bool Poker(List<string> reka)
+        {
+            reka.Sort();
+
+            if (reka.Count != 5)
+            {
+                return false;
+            }
+
+            if (reka[0].Substring(0, 2) != "10")
+            {
+                return false;
+            }
+
+            string kolorPierwszejKarty = reka[0].Substring(reka[0].Length - 1, 1);
+            foreach (var karta in reka)
+            {
+                string kolorKarty = karta.Substring(karta.Length - 1, 1);
+                if (kolorKarty != kolorPierwszejKarty)
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < reka.Count - 1; i++)
+            {
+                string wartoscKarty1 = reka[i].Substring(0, reka[i].Length - 1);
+                string wartoscKarty2 = reka[i + 1].Substring(0, reka[i + 1].Length - 1);
+
+                if (Int32.Parse(wartoscKarty1) + 1 != Int32.Parse(wartoscKarty2))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public static void Main(string[] args)
         {
             List<string> Reka = new List<string>();
             List<string> Stol = new List<string>();
             List<string> Wszystkie = new List<string>();
+            
             Wszystkie = TworzenieWynikowej(Reka, Stol);
         }
     }
