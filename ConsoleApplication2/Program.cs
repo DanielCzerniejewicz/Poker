@@ -391,6 +391,7 @@ namespace Poker
             {
                 kasa -= inwestycja;
             }
+            List<Gracze> listaGraczy = new(); // Lista graczy, abyś mógł indeksami lecieć po adresach TODO jeszcze dodać ciebie jako gracza :P
             Dictionary<Gracze, int> Wynik = new Dictionary<Gracze, int>();
             Gracze TY = new Gracze(nick);
             Wszystkie = TworzenieWynikowej(Reka, Stol);
@@ -436,7 +437,8 @@ namespace Poker
             {
                 Random r = new Random();
                 Gracze gracz = new Gracze($"Gracz{i}");
-                Wynik.Add(gracz,r.Next(0,9));
+                listaGraczy.Add(gracz);
+                Wynik.Add(listaGraczy[i],r.Next(0,9));
             }
 
             List<int> pomocnicza = new List<int>();
@@ -476,7 +478,7 @@ namespace Poker
             Console.WriteLine("Ręce pozostałych graczy!");
             foreach (var element in Wynik)
             {
-                Console.Write($"{element.Key} {element.Value}");   
+                Console.WriteLine($"{element.Key.Nazwa} {element.Value}");   
             }
 
             bool endGame = false;
@@ -557,11 +559,11 @@ namespace Poker
                     }
                     Wynik.Clear();
                     Wynik.Add(TY,wartosc);
-                    for (int i = 0; i < 3; i++)
+                    for(int i = 0; i < 3; i++)
                     {
                         Random r = new Random();
-                        Gracze gracz = new Gracze($"Gracz{i}");
-                        Wynik.Add(gracz,r.Next(0,9));
+                        Wynik.Add(listaGraczy[i],r.Next(0,9));
+
                     }
 
                     pomocnicza.Clear();
@@ -601,7 +603,7 @@ namespace Poker
                     Console.WriteLine("Ręce pozostałych graczy!");
                     foreach (var element in Wynik)
                     {
-                        Console.Write($"{element.Key.Nazwa} {element.Value}");   
+                        Console.WriteLine($"{element.Key.Nazwa} {element.Value}");   
                     }
                 }
             }
