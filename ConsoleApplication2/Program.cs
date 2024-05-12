@@ -24,6 +24,8 @@ namespace Poker
     {
         public static void SetReka(List<string> list)
         {
+            list.Clear(); // Wyczyszczenie po poprzedniej partii
+            
             string[] Wszystkie = {
                 "2♠", "2♥", "2♦", "2♣",
                 "3♠", "3♥", "3♦", "3♣",
