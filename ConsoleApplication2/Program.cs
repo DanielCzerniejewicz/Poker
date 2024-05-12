@@ -1,8 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Poker
 {
+    class Gracze
+    {
+        public string Nazwa { get; set; }
+
+        //Na wypadek gdyby nie dodano imienia bądź nicku
+        public Gracze()
+        {
+            Nazwa = "Brak";
+        }
+
+        public Gracze(string nazwa)
+        {
+            Nazwa = nazwa;
+        }
+
+    }
     internal class Program
     {
         public static void SetReka(List<string> list)
@@ -64,7 +81,7 @@ namespace Poker
             Console.WriteLine("Ręka Gracza : ");
             foreach (var element in list)
             {
-                Console.Write(element + " ");   
+                Console.Write(element + " ");
             }
         }
         public static void GetStol(List<string> list)
@@ -72,10 +89,10 @@ namespace Poker
             Console.WriteLine("Karty w Stole : ");
             foreach (var element in list)
             {
-                Console.Write(element + " ");   
+                Console.Write(element + " ");
             }
         }
-        
+
         //Ta funkcja sie przyda do porownywania potem czy ktos ma np pare
         /*
          * Dlaczego?
@@ -115,12 +132,37 @@ namespace Poker
                 }
             }
 
-            if (ilosc == 0) 
+            if (ilosc == 0)
             {
                 Pustak = true;
             }
 
             return Pustak;
+        }
+        public static bool Kolor(List<string> list)
+        {
+            bool kolor = false;
+            list.Sort();
+            int ilosc = 0;
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                string wartoscKarty1 = list[i].Substring(0, list[i].Length - 1);
+                string kolorKarty1 = list[i].Substring(list[i].Length - 1, 1);
+                string wartoscKarty2 = list[i + 1].Substring(0, list[i + 1].Length - 1);
+                string kolorKarty2 = list[i + 1].Substring(list[i + 1].Length - 1, 1);
+
+                if (wartoscKarty1 != wartoscKarty2 && kolorKarty1 == kolorKarty2)
+                {
+                    ilosc++;
+                }
+            }
+
+            if (ilosc == 4)
+            {
+                kolor = true;
+            }
+
+            return kolor;
         }
 
         public static bool Para(List<string> list)
@@ -141,7 +183,7 @@ namespace Poker
                 }
             }
 
-            if (ilosc >= 1) 
+            if (ilosc >= 1)
             {
                 czyPara = true;
             }
@@ -164,11 +206,11 @@ namespace Poker
                 if (wartoscKarty1 == wartoscKarty2 && kolorKarty1 != kolorKarty2)
                 {
                     iloscPar++;
-                    i++; 
+                    i++;
                 }
             }
 
-            if (iloscPar >= 2) 
+            if (iloscPar >= 2)
             {
                 czyDwiePary = true;
             }
@@ -200,7 +242,7 @@ namespace Poker
             return czyStrit;
         }
 
-        public bool Trojka(List<string> list)
+        public static bool Trojka(List<string> list)
         {
             bool trojka = false;
             for (int i = 0; i < list.Count - 2; i++)
@@ -284,13 +326,7 @@ namespace Poker
         public static bool Poker(List<string> reka)
         {
             reka.Sort();
-
-            if (reka.Count != 5)
-            {
-                return false;
-            }
-
-            if (reka[0].Substring(0, 2) != "10")
+            if (reka[2].Substring(0, 2) != "10")
             {
                 return false;
             }
@@ -318,14 +354,257 @@ namespace Poker
 
             return true;
         }
-
+        
         public static void Main(string[] args)
         {
             List<string> Reka = new List<string>();
             List<string> Stol = new List<string>();
             List<string> Wszystkie = new List<string>();
-            
+            int kasa = 500;
+            int wartosc = 0; //Wartość na zasadzie sprawdzania kto ma lepszą rękę
+            Console.WriteLine("Rozpoczynanie gry w Pokera!");
+            Console.WriteLine("Zaczynamy z 500 $");
+            Console.WriteLine("Podaj jak się nazywasz!");
+            string nick = Console.ReadLine();
+            SetReka(Reka);
+            GetReka(Reka);
+            Console.WriteLine("Ile inwestujemy?");
+            bool poprawnaInwestycja = false;
+            int inwestycja = 0;
+            while (!poprawnaInwestycja)
+            {
+                try
+                {
+                    inwestycja = int.Parse(Console.ReadLine());
+                    poprawnaInwestycja = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Podaj poprawną liczbę!");
+                }
+            }
+            if (inwestycja > kasa)
+            {
+                Console.WriteLine("Brak pieniędzy!");
+            }
+            else
+            {
+                kasa -= inwestycja;
+            }
+            Dictionary<Gracze, int> Wynik = new Dictionary<Gracze, int>();
+            Gracze TY = new Gracze(nick);
             Wszystkie = TworzenieWynikowej(Reka, Stol);
+            if (Pusto(Wszystkie) == true)
+            {
+                wartosc = 0;
+            }
+
+            else if (Para(Wszystkie) == true)
+            {
+                wartosc = 1;
+            }
+            else if (DwiePary(Wszystkie) == true)
+            {
+                wartosc = 2;
+            }
+            else if(Trojka(Wszystkie) == true)
+            {
+                wartosc = 3;
+            }
+            else if(Strit(Wszystkie) == true)
+            {
+                wartosc = 4;
+            }
+            else if (Kolor(Wszystkie) == true)
+            {
+                wartosc = 5;
+            }
+            else if (Full(Wszystkie) == true)
+            {
+                wartosc = 6;
+            }
+            else if(Kareta(Wszystkie) == true)
+            {
+                wartosc = 7;
+            }
+            else if (Poker(Wszystkie) == true)
+            {
+                wartosc = 8;
+            }
+            Wynik.Add(TY,wartosc);
+            for (int i = 0; i < 3; i++)
+            {
+                Random r = new Random();
+                Gracze gracz = new Gracze($"Gracz{i}");
+                Wynik.Add(gracz,r.Next(0,9));
+            }
+
+            List<int> pomocnicza = new List<int>();
+            foreach (var element in Wynik)
+            {
+                pomocnicza.Add(element.Value);
+            }
+
+            int ilosc_maxow = 1;
+            int max = 0;
+            max = pomocnicza.Max();
+            for (int i = 0; i < pomocnicza.Count; i++)
+            {
+                if (max == pomocnicza[i])
+                {
+                    ilosc_maxow++;
+                }
+            }
+            if(ilosc_maxow != 1)
+            {
+                Console.WriteLine("Kasa zwrócona remis!");
+                kasa += inwestycja;
+            }
+            else
+            {
+                if (max == wartosc) // Sprawdzanie czy wygrałeś!
+                {
+                    Console.WriteLine($"Wygrałeś! Nowy stan konta : {kasa}");
+                    kasa += inwestycja;
+                }
+                else
+                {
+                    Console.WriteLine($"Przegrałeś! Nowy stan konta : {kasa}");
+                }
+            }
+
+            Console.WriteLine("Ręce pozostałych graczy!");
+            foreach (var element in Wynik)
+            {
+                Console.Write($"{element.Key} {element.Value}");   
+            }
+
+            bool endGame = false;
+            while (!endGame)
+            {
+                Console.WriteLine("Naciśnij ESC, aby wyjść lub dowolny inny klawisz, aby kontynuować.");
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Escape || kasa <= 0)
+                {
+                    endGame = true;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Kontynuujemy grę!");
+                    Console.WriteLine($"Stan konta: {kasa}");
+                    SetReka(Reka);
+                    GetReka(Reka);
+                    Console.WriteLine("Ile inwestujemy?");
+                    poprawnaInwestycja = false;
+                    while (!poprawnaInwestycja)
+                    {
+                        try
+                        {
+                            inwestycja = int.Parse(Console.ReadLine());
+                            poprawnaInwestycja = true;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Podaj poprawną liczbę!");
+                        }
+                    }
+                    if (inwestycja > kasa)
+                    {
+                        Console.WriteLine("Brak pieniędzy!");
+                    }
+                    else
+                    {
+                        kasa -= inwestycja;
+                    }
+                    Wszystkie = TworzenieWynikowej(Reka, Stol);
+                    if (Pusto(Wszystkie) == true)
+                    {
+                        wartosc = 0;
+                    }
+
+                    else if (Para(Wszystkie) == true)
+                    {
+                        wartosc = 1;
+                    }
+                    else if (DwiePary(Wszystkie) == true)
+                    {
+                        wartosc = 2;
+                    }
+                    else if(Trojka(Wszystkie) == true)
+                    {
+                        wartosc = 3;
+                    }
+                    else if(Strit(Wszystkie) == true)
+                    {
+                        wartosc = 4;
+                    }
+                    else if (Kolor(Wszystkie) == true)
+                    {
+                        wartosc = 5;
+                    }
+                    else if (Full(Wszystkie) == true)
+                    {
+                        wartosc = 6;
+                    }
+                    else if(Kareta(Wszystkie) == true)
+                    {
+                        wartosc = 7;
+                    }
+                    else if (Poker(Wszystkie) == true)
+                    {
+                        wartosc = 8;
+                    }
+                    Wynik.Clear();
+                    Wynik.Add(TY,wartosc);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Random r = new Random();
+                        Gracze gracz = new Gracze($"Gracz{i}");
+                        Wynik.Add(gracz,r.Next(0,9));
+                    }
+
+                    pomocnicza.Clear();
+                    foreach (var element in Wynik)
+                    {
+                        pomocnicza.Add(element.Value);
+                    }
+
+                    ilosc_maxow = 1;
+                    max = 0;
+                    max = pomocnicza.Max();
+                    for (int i = 0; i < pomocnicza.Count; i++)
+                    {
+                        if (max == pomocnicza[i])
+                        {
+                            ilosc_maxow++;
+                        }
+                    }
+                    if(ilosc_maxow != 1)
+                    {
+                        Console.WriteLine("Kasa zwrócona remis!");
+                        kasa += inwestycja;
+                    }
+                    else
+                    {
+                        if (max == wartosc) // Sprawdzanie czy wygrałeś!
+                        {
+                            Console.WriteLine($"Wygrałeś! Nowy stan konta : {kasa}");
+                            kasa += inwestycja;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Przegrałeś! Nowy stan konta : {kasa}");
+                        }
+                    }
+
+                    Console.WriteLine("Ręce pozostałych graczy!");
+                    foreach (var element in Wynik)
+                    {
+                        Console.Write($"{element.Key.Nazwa} {element.Value}");   
+                    }
+                }
+            }
         }
     }
 }
