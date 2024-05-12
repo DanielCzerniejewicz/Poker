@@ -393,7 +393,7 @@ namespace Poker
             {
                 kasa -= inwestycja;
             }
-            List<Gracze> listaGraczy = new(); // Lista graczy, abyś mógł indeksami lecieć po adresach TODO jeszcze dodać ciebie jako gracza :P
+            List<Gracze> listaGraczy = new List<Gracze>(); // Lista graczy, abyś mógł indeksami lecieć po adresach TODO jeszcze dodać ciebie jako gracza :P
             Dictionary<Gracze, int> Wynik = new Dictionary<Gracze, int>();
             Gracze TY = new Gracze(nick);
             Wszystkie = TworzenieWynikowej(Reka, Stol);
