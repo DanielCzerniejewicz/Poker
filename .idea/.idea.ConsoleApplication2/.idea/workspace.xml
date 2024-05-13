@@ -7,14 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553afc35-d047-44ad-9cc0-f0bdbabbc7c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApplication2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApplication2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApplication2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApplication2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApplication2/bin/Debug/ConsoleApplication2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApplication2/bin/Debug/ConsoleApplication2.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApplication2/bin/Debug/ConsoleApplication2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApplication2/bin/Debug/ConsoleApplication2.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApplication2/obj/Debug/ConsoleApplication2.exe" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApplication2/obj/Debug/ConsoleApplication2.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApplication2/obj/Debug/ConsoleApplication2.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApplication2/obj/Debug/ConsoleApplication2.pdb" afterDir="false" />
-    </list>
+    <list default="true" id="553afc35-d047-44ad-9cc0-f0bdbabbc7c7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,6 +99,7 @@
       <workItem from="1715373794801" duration="4656000" />
       <workItem from="1715544265334" duration="230000" />
       <workItem from="1715544525721" duration="4021000" />
+      <workItem from="1715548751104" duration="433000" />
     </task>
     <task id="LOCAL-00001" summary="Dodanie 2 Par, Strita,Karety,Fulla">
       <option name="closed" value="true" />
@@ -131,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715199359268</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Prawie koniec.">
+      <option name="closed" value="true" />
+      <created>1715548778881</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715548778881</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +146,7 @@
     <MESSAGE value="Dodanie 2 Par, Strita,Karety,Fulla" />
     <MESSAGE value="Dodano Trójkę" />
     <MESSAGE value="Dodanie Funkcji Poker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie Funkcji Poker" />
+    <MESSAGE value="Prawie koniec." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prawie koniec." />
   </component>
 </project>
