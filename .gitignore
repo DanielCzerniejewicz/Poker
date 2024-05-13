@@ -16,6 +16,3 @@ Trening
 Test
 Gitignore
 Properties
-
-*.csproj
-# UWAGA usunie to plik .csproj co oznacza, że trzeba będzie go samemu wygenerować
