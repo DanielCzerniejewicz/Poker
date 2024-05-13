@@ -1,0 +1,21 @@
+# Pliki
+*.temp.*
+*.test.*
+*.user
+*.sln
+*.exe
+
+
+# Foldery
+.vs
+.vscode
+.idea
+obj
+bin
+Trening
+Test
+Gitignore
+Properties
+
+*.csproj
+# UWAGA usunie to plik .csproj co oznacza, że trzeba będzie go samemu wygenerować
