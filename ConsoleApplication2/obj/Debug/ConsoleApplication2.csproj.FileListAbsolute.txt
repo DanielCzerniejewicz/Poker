@@ -1,6 +1,0 @@
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.csproj.AssemblyReference.cache
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.csproj.CoreCompileInputs.cache
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe
-C:\Users\Daniel\Desktop\Szkola\2Klasa\Poker\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.pdb
